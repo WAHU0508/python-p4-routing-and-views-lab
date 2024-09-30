@@ -15,10 +15,22 @@ def print_string(parameter):
 
 @app.route('/count/<int:parameter>')
 def count(parameter):
-    numbers = "<br>".join(str(i) for i in range(1, parameter + 1))
-    print numbers
-    return numbers
+    return "\n".join(str(i) for i in range(parameter)) + "\n"
 
-
+@app.route('/math/<num1>/<operation>/<num2>')
+def math(num1, operation, num2):
+    a = int(num1)
+    b = int(num2)
+    if operation == '+':
+        result = a + b
+    if operation == '-':
+        result = a - b
+    if operation == '*':
+        result = a * b
+    if operation == 'div':
+        result = a / b
+    if operation == '%':
+        result = a % b
+    return str(result)
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
